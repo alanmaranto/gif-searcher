@@ -1,19 +1,20 @@
 import React, { useState } from "react";
-import PropTypes from "prop-types";
+import AddCategory from "./AddCategory";
 import data from "./categories";
 
 const GifApp = (props) => {
-  const [ categories, setCategories] = useState(data)
+  const [categories, setCategories] = useState(data);
 
-  const handleAdd = () => {
+  /*   const handleAdd = () => {
     setCategories([...categories, 'Rooney'])
-  }
+    setCategories(cats => [...cats, categories] )
+  } */
+
   return (
     <div>
       <h2>Gif</h2>
+      <AddCategory setCategories={setCategories} categories={categories} />
       <hr />
-
-      <button onClick={handleAdd}>Add</button>
 
       <ol>
         {categories.map((category) => {
@@ -23,7 +24,5 @@ const GifApp = (props) => {
     </div>
   );
 };
-
-GifApp.propTypes = {};
 
 export default GifApp;
