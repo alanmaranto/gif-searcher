@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { getCharacters } from "../api";
 
 const GifGrid = ({ category }) => {
+  useEffect(() => {
+    getGigfs();
+  }, []);
+
   const getGigfs = async () => {
     const data = await getCharacters();
 
@@ -15,7 +19,7 @@ const GifGrid = ({ category }) => {
     });
     console.log(gifs);
   };
-  getGigfs();
+
   return (
     <div>
       <h3>{category}</h3>
