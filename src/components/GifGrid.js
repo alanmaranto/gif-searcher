@@ -7,21 +7,20 @@ const GifGrid = ({ category }) => {
   const [gifs, setGifs] = useState([]);
 
   useEffect(() => {
-    getGigfs();
+    const getGifs = async () => {
+      const data = await searchGifs(category);
+
+      const gifs = data.data.map((gif) => {
+        return {
+          id: gif.id,
+          title: gif.title,
+          url: gif.images?.downsized_medium.url,
+        };
+      });
+      setGifs(gifs);
+    };
+    getGifs();
   }, [category]);
-
-  const getGigfs = async () => {
-    const data = await searchGifs(category);
-
-    const gifs = data.data.map((gif) => {
-      return {
-        id: gif.id,
-        title: gif.title,
-        url: gif.images?.downsized_medium.url,
-      };
-    });
-    setGifs(gifs);
-  };
 
   return (
     <>
