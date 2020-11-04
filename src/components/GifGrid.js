@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import GifGridItem from "./GifGridItem";
-import { getCharacters } from "../api";
+import { searchGifs } from "../api";
 
 const GifGrid = ({ category }) => {
   const [gifs, setGifs] = useState([]);
 
   useEffect(() => {
     getGigfs();
-  }, []);
+  }, [category]);
 
   const getGigfs = async () => {
-    const data = await getCharacters();
+    const data = await searchGifs(category);
 
     const gifs = data.data.map((gif) => {
       return {

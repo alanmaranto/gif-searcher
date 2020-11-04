@@ -11,7 +11,7 @@ const AddCategory = ({ setCategories, categories }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (category.trim().length > 2) {
-      setCategories([...categories, category.trimStart().trimEnd()]);
+      setCategories([category.trimStart().trimEnd(), ...categories]);
       setCategory("");
     }
   };
