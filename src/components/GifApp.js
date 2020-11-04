@@ -3,7 +3,7 @@ import AddCategory from "./AddCategory";
 import GifGrid from "./GifGrid";
 import data from "./categories";
 
-const GifApp = (props) => {
+const GifApp = () => {
   const [categories, setCategories] = useState(data);
 
   /*   const handleAdd = () => {

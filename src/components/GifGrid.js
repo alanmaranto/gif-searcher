@@ -1,30 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import GifGridItem from "./GifGridItem";
-import { searchGifs } from "../api";
+import { useFetchGifs } from "../hooks/useFetchGifs";
 
 const GifGrid = ({ category }) => {
-  const [gifs, setGifs] = useState([]);
-
-  useEffect(() => {
-    const getGifs = async () => {
-      const data = await searchGifs(category);
-
-      const gifs = data.data.map((gif) => {
-        return {
-          id: gif.id,
-          title: gif.title,
-          url: gif.images?.downsized_medium.url,
-        };
-      });
-      setGifs(gifs);
-    };
-    getGifs();
-  }, [category]);
+  const { data: gifs, loading } = useFetchGifs(category);
 
   return (
     <>
-      <h3>{category}</h3>
+      <h3>{category.toUpperCase()}</h3>
+      {loading && <span>"Loading..."</span>}
       <div className="card-grid">
         {gifs.map((gif) => (
           <GifGridItem title={gif.title} key={gif.id} url={gif.url} />
