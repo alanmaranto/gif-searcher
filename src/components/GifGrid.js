@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
+import GifGridItem from "./GifGridItem";
 import { getCharacters } from "../api";
 
 const GifGrid = ({ category }) => {
+  const [gifs, setGifs] = useState([]);
+
   useEffect(() => {
     getGigfs();
   }, []);
@@ -17,13 +20,18 @@ const GifGrid = ({ category }) => {
         url: gif.images?.downsized_medium.url,
       };
     });
-    console.log(gifs);
+    setGifs(gifs);
   };
 
   return (
-    <div>
+    <>
       <h3>{category}</h3>
-    </div>
+      <div className="card-grid">
+        {gifs.map((gif) => (
+          <GifGridItem title={gif.title} key={gif.id} url={gif.url} />
+        ))}
+      </div>
+    </>
   );
 };
 
