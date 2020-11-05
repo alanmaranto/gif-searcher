@@ -9,7 +9,7 @@ const GifGrid = ({ category }) => {
   return (
     <>
       <h3>{category.toUpperCase()}</h3>
-      {loading && <span>"Loading..."</span>}
+      {loading && <span className="animate__animated animate_flash">"Loading..."</span>}
       <div className="card-grid">
         {gifs.map((gif) => (
           <GifGridItem title={gif.title} key={gif.id} url={gif.url} />
