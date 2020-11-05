@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import AddCategory from "./AddCategory";
 import GifGrid from "./GifGrid";
-import data from "./categories";
 
 const GifApp = () => {
-  const [categories, setCategories] = useState(data);
+  const [categories, setCategories] = useState([]);
 
   /*   const handleAdd = () => {
     setCategories([...categories, 'Rooney'])
